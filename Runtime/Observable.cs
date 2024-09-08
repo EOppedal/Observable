@@ -1,12 +1,11 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 /// <summary>
 /// Holds a reference to a variable if type T and an event that gives the value to the variable when changed
 /// </summary>
 [Serializable] public class Observable<T> {
-    public event UnityAction<T> OnValueChanged = delegate { };
+    public event Action<T> OnValueChanged = delegate { };
 
     [SerializeField] private T value;
 
@@ -24,4 +23,6 @@ using UnityEngine.Events;
     public void ForceUpdate() {
         OnValueChanged?.Invoke(Value);
     }
+    
+    public static implicit operator T(Observable<T> myClass) => myClass.Value;
 }
