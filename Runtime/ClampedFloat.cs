@@ -14,7 +14,7 @@ using UnityEngine;
         get => maxValue;
         set {
             maxValue = value;
-            OnValueChanged?.Invoke(Value);
+            OnValueChanged.Invoke(Value);
         }
     }
 
